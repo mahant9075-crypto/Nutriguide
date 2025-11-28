@@ -1,0 +1,48 @@
+[
+    {
+        "name": "Diabetes Type 2",
+        "symptoms": [
+            "increased thirst",
+            "frequent urination",
+            "hunger",
+            "fatigue"
+        ],
+        "recommendations": {
+            "eat": [
+                "Leafy greens",
+                "Whole grains",
+                "Fatty fish",
+                "Beans"
+            ],
+            "avoid": [
+                "Sugary drinks",
+                "White bread",
+                "Processed foods"
+            ],
+            "reason": "Low glycemic index foods help maintain stable blood sugar levels."
+        }
+    },
+    {
+        "name": "Hypertension",
+        "symptoms": [
+            "headache",
+            "shortness of breath",
+            "nosebleeds"
+        ],
+        "recommendations": {
+            "eat": [
+                "Fruits",
+                "Vegetables",
+                "Whole grains",
+                "Low-fat dairy"
+            ],
+            "avoid": [
+                "Salt",
+                "Red meat",
+                "Alcohol",
+                "Saturated fats"
+            ],
+            "reason": "DASH diet helps lower blood pressure by reducing sodium intake."
+        }
+    }
+]

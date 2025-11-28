@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+reportlab
+pydantic
+python-multipart
+jinja2
+gunicorn

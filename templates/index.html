@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriGuide - Your Personal Health Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        apple: {
+                            gray: '#f5f5f7',
+                            blue: '#0071e3',
+                            text: '#1d1d1f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-apple-gray text-apple-text font-sans antialiased selection:bg-apple-blue selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-12 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-semibold text-lg tracking-tight">NutriGuide</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:block flex-1 max-w-md mx-8 relative">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="searchInput"
+                            class="block w-full pl-10 pr-3 py-1.5 border border-gray-200 rounded-lg leading-5 bg-gray-50 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-apple-blue focus:border-apple-blue sm:text-sm transition duration-150 ease-in-out"
+                            placeholder="Search diseases (e.g., Diabetes)...">
+
+                        <!-- Suggestions Dropdown -->
+                        <div id="searchSuggestions"
+                            class="absolute z-50 mt-1 w-full bg-white shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto max-h-60 focus:outline-none sm:text-sm hidden">
+                            <!-- Suggestions will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-apple-blue transition-colors">Home</a>
+                    <a href="#assessment"
+                        class="text-sm font-medium hover:text-apple-blue transition-colors">Assessment</a>
+                    <a href="#feedback" class="text-sm font-medium hover:text-apple-blue transition-colors">Feedback</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 text-center max-w-4xl mx-auto fade-in">
+        <h1
+            class="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
+            Health, reimagined.
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-500 mb-10 max-w-2xl mx-auto font-light">
+            Advanced disease prediction and personalized nutrition advice. <br>
+            Powered by intelligent analysis.
+        </p>
+        <a href="#assessment"
+            class="inline-block bg-apple-blue text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-blue-600 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Start Assessment
+        </a>
+    </section>
+
+    <!-- Assessment Form -->
+    <section id="assessment" class="py-20 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Your Health Profile</h2>
+                <p class="text-gray-500">Enter your details for a comprehensive analysis.</p>
+            </div>
+
+            <form id="medicalForm" class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" name="name" required
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"
+                            placeholder="John Doe">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                        <input type="number" name="age" required
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"
+                            placeholder="30">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+                        <input type="number" name="height" required
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"
+                            placeholder="175">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+                        <input type="number" name="weight" required
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"
+                            placeholder="70">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Blood Group</label>
+                        <select name="blood_group"
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Sugar Level (mg/dL)</label>
+                        <input type="number" name="sugar_level"
+                            class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"
+                            placeholder="Optional">
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-10">
+                    <button type="submit"
+                        class="bg-black text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all transform hover:scale-105 shadow-lg">
+                        Analyze Health
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Results Section (Hidden by default) -->
+    <section id="results" class="py-20 px-4 bg-apple-gray hidden fade-in">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">Analysis Results</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Prediction Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-500 uppercase tracking-wide text-xs">Prediction</h3>
+                    <p id="predictionText" class="text-4xl font-bold text-apple-text mb-2">Healthy</p>
+                    <p class="text-gray-500">Based on your provided metrics.</p>
+                </div>
+
+                <!-- Report Card -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-500 uppercase tracking-wide text-xs">Medical Report
+                    </h3>
+                    <p class="text-gray-500 mb-6">Download your detailed PDF report.</p>
+                    <button id="downloadReportBtn"
+                        class="text-apple-blue font-medium hover:underline flex items-center">
+                        Download PDF
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="mt-12 bg-white p-8 rounded-3xl shadow-sm">
+                <h3 class="text-2xl font-bold mb-8">Dietary Recommendations</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h4 class="text-lg font-semibold text-green-600 mb-4 flex items-center">
+                            <span class="bg-green-100 p-2 rounded-full mr-3">✓</span> Recommended
+                        </h4>
+                        <ul id="eatList" class="space-y-3 text-gray-600">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-red-500 mb-4 flex items-center">
+                            <span class="bg-red-100 p-2 rounded-full mr-3">✕</span> Avoid
+                        </h4>
+                        <ul id="avoidList" class="space-y-3 text-gray-600">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-100">
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Why?</p>
+                    <p id="reasonText" class="text-gray-700 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="py-20 px-4 bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">We value your feedback</h2>
+            <form id="feedbackForm" class="space-y-6 text-left">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                    <input type="text" name="user_name" required
+                        class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Contact Info</label>
+                    <input type="text" name="contact_info" required
+                        class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <textarea name="message" rows="4" required
+                        class="w-full px-4 py-3 rounded-xl bg-gray-50 border-transparent focus:border-apple-blue focus:bg-white focus:ring-0 transition-all duration-200"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-apple-blue text-white px-6 py-4 rounded-xl font-medium hover:bg-blue-600 transition-colors shadow-lg">
+                    Submit Feedback
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-apple-gray py-12 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 NutriGuide. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
